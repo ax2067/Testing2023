@@ -68,8 +68,6 @@ public class NYTimesTest {
     public void navigateToTheAuthorPageTest() throws InterruptedException {
         driver.get("https://www.nytimes.com/wirecutter/money/rei-gear-up-get-out-sale-2023-1114/");
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
-        WebElement closeButton = setWebElement(By.xpath("//button[@class='_27f88555']"));
-        closeButton.click();
         WebElement authorNameLink = setWebElement(By.xpath("//a[@data-gtm-trigger='author_name_link']"));
         authorNameLink.click();
         Thread.sleep(4000);
@@ -108,7 +106,7 @@ public class NYTimesTest {
         driver.get("https://www.nytimes.com/wirecutter/deals/");
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
         WebElement closeButton = setWebElement(By.xpath("//button[@class='_27f88555']"));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(8));
+        Thread.sleep(2000);
         closeButton.click();
         WebElement dealOption = setWebElement(By.xpath("//li[@class='dea75f89 swiper-slide _7437d1fd swiper-slide-visible swiper-slide-active']"));
         dealOption.click();
@@ -116,7 +114,7 @@ public class NYTimesTest {
         String handle = driver.getWindowHandles().toArray()[1]
                 .toString();
         driver.switchTo().window(handle);
-        Thread.sleep(3000);
+        Thread.sleep(5000);
         Assert.assertNotEquals(driver.getCurrentUrl(), "https://www.nytimes.com/wirecutter/deals/", "Problems with navigation");
     }
 
