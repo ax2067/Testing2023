@@ -68,6 +68,9 @@ public class NYTimesTest {
     public void navigateToTheAuthorPageTest() throws InterruptedException {
         driver.get("https://www.nytimes.com/wirecutter/money/rei-gear-up-get-out-sale-2023-1114/");
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+        WebElement closeButton = setWebElement(By.xpath("//button[@class='_27f88555']"));
+        Thread.sleep(4000);
+        closeButton.click();
         WebElement authorNameLink = setWebElement(By.xpath("//a[@data-gtm-trigger='author_name_link']"));
         authorNameLink.click();
         Thread.sleep(4000);
@@ -122,14 +125,14 @@ public class NYTimesTest {
     public void testNavigationToSocialSite() throws InterruptedException {
         driver.get("https://www.nytimes.com/wirecutter/reviews/best-cutting-board/");
         WebElement closeButton = setWebElement(By.xpath("//button[@class='_27f88555']"));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+        Thread.sleep(5000);
         closeButton.click();
         WebElement socialSiteButton = setWebElement(By.xpath("//a[@class='_4bf55385 _0d56c34f']"));
         socialSiteButton.click();
         String handle = driver.getWindowHandles().toArray()[1]
                 .toString();
         driver.switchTo().window(handle);
-        Thread.sleep(1000);
+        Thread.sleep(5000);
         Assert.assertEquals(driver.getCurrentUrl(), "https://twitter.com/i/flow/login?redirect_after_login=%2Fintent%2Ftweet%3Ftext%3DThe%2520Best%2520Cutting%2520Boards%2520%257C%2520Wirecutter%26url%3Dhttps%3A%2F%2Fwww.nytimes.com%2Fwirecutter%2Freviews%2Fbest-cutting-board%2F%26via%3Dwirecutter", "Problem with social site navigation");
     }
 
