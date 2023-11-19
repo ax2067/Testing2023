@@ -24,9 +24,10 @@ public class NYTimesTest {
     @Test(description = "Test changing language operation")
     public void testChangeLanguage() {
         driver.get("https://www.nytimes.com/international/");
-        WebElement changeLanguageButton = setWebElement(By.xpath("//a[@lang='es-ES']"));
+        WebElement changeLanguageButton = setWebElement(By.xpath("//a[@lang='en-CA']"));
         changeLanguageButton.click();
-        Assert.assertEquals(driver.getCurrentUrl(), "https://www.nytimes.com/es/?redirect_uri=https%3A%2F%2Fwww.nytimes.com%2Finternational%2F", "Problem with changing language");
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(8));
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.nytimes.com/ca/", "Problem with changing language");
     }
 
     @Test(description = "Test how site delete all cookies")
@@ -66,8 +67,9 @@ public class NYTimesTest {
     @Test(description = "Test find article author page")
     public void navigateToTheAuthorPageTest() throws InterruptedException {
         driver.get("https://www.nytimes.com/wirecutter/money/rei-gear-up-get-out-sale-2023-1114/");
-        driver.manage().window().fullscreen();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+        WebElement closeButton = setWebElement(By.xpath("//button[@class='_27f88555']"));
+        closeButton.click();
         WebElement authorNameLink = setWebElement(By.xpath("//a[@data-gtm-trigger='author_name_link']"));
         authorNameLink.click();
         Thread.sleep(4000);
@@ -143,7 +145,7 @@ public class NYTimesTest {
     @AfterMethod(alwaysRun = true)
     public void closeWebPage() {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(8));
-        driver.quit();
+        //driver.quit();
         driver = null;
 
     }
