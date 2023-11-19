@@ -143,7 +143,7 @@ public class NYTimesTest {
     @AfterMethod(alwaysRun = true)
     public void closeWebPage() {
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(8));
-       // driver.quit();
+        driver.quit();
         driver = null;
 
     }
