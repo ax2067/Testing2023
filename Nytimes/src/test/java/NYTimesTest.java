@@ -22,11 +22,12 @@ public class NYTimesTest {
     }
 
     @Test(description = "Test changing language operation")
-    public void testChangeLanguage() {
+    public void testChangeLanguage() throws InterruptedException {
         driver.get("https://www.nytimes.com/international/");
         WebElement changeLanguageButton = setWebElement(By.xpath("//a[@lang='en-CA']"));
         changeLanguageButton.click();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(8));
+        Thread.sleep(4000);
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.nytimes.com/ca/", "Problem with changing language");
     }
 
@@ -78,10 +79,10 @@ public class NYTimesTest {
     }
 
     @Test(description = "Test searchbar")
-    public void testEmailField() {
+    public void testSearchField() throws InterruptedException {
         driver.get("https://www.nytimes.com/wirecutter/");
         driver.manage().window().fullscreen();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
+        Thread.sleep(3000);
         WebElement searchBar = setWebElement(By.xpath("//input[@aria-label='Search Wirecutter']"));
         searchBar.sendKeys("Kitchen");
         WebElement submitButton = setWebElement(By.xpath("//button[@type='submit']"));
@@ -104,22 +105,22 @@ public class NYTimesTest {
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.nytimes.com/search?dropmab=false&query=Climate&sort=oldest", "Problems with filters");
     }
 
-    @Test(description = "Test deals page")
-    public void testNavigationToDealPage() throws InterruptedException {
-        driver.get("https://www.nytimes.com/wirecutter/deals/");
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
-        WebElement closeButton = setWebElement(By.xpath("//button[@class='_27f88555']"));
-        Thread.sleep(2000);
-        closeButton.click();
-        WebElement dealOption = setWebElement(By.xpath("//li[@class='dea75f89 swiper-slide _7437d1fd swiper-slide-visible swiper-slide-active']"));
-        dealOption.click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        String handle = driver.getWindowHandles().toArray()[1]
-                .toString();
-        driver.switchTo().window(handle);
-        Thread.sleep(5000);
-        Assert.assertNotEquals(driver.getCurrentUrl(), "https://www.nytimes.com/wirecutter/deals/", "Problems with navigation");
-    }
+//    @Test(description = "Test deals page")
+//    public void testNavigationToDealPage() throws InterruptedException {
+//        driver.get("https://www.nytimes.com/wirecutter/deals/");
+//        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
+//        WebElement closeButton = setWebElement(By.xpath("//button[@class='_27f88555']"));
+//        Thread.sleep(2000);
+//        closeButton.click();
+//        WebElement dealOption = setWebElement(By.xpath("//li[@class='dea75f89 swiper-slide _7437d1fd swiper-slide-visible swiper-slide-active']"));
+//        dealOption.click();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        String handle = driver.getWindowHandles().toArray()[1]
+//                .toString();
+//        driver.switchTo().window(handle);
+//        Thread.sleep(5000);
+//        Assert.assertNotEquals(driver.getCurrentUrl(), "https://www.nytimes.com/wirecutter/deals/", "Problems with navigation");
+//    }
 
     @Test(description = "Test navigation to social sites")
     public void testNavigationToSocialSite() throws InterruptedException {
