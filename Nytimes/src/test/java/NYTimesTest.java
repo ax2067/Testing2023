@@ -26,8 +26,7 @@ public class NYTimesTest {
         driver.get("https://www.nytimes.com/international/");
         WebElement changeLanguageButton = setWebElement(By.xpath("//a[@lang='en-CA']"));
         changeLanguageButton.click();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(8));
-        Thread.sleep(4000);
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(4));
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.nytimes.com/ca/", "Problem with changing language");
     }
 
