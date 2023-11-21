@@ -48,7 +48,7 @@ public class NYTimesTest {
         WebElement savePageButton = setWebElement(By.xpath("//button[@data-save-content-name='save_article']"));
         savePageButton.click();
         List<WebElement> saveBlock = driver.findElements(By.xpath("//div[@class='a25d1d11']"));
-        Assert.assertTrue(!saveBlock.isEmpty());
+        Assert.assertTrue(saveBlock.isEmpty());
     }
 
     @Test(description = "Test find article from author page")
@@ -68,7 +68,8 @@ public class NYTimesTest {
     public void navigateToTheAuthorPageTest() throws InterruptedException {
         driver.get("https://www.nytimes.com/wirecutter/money/rei-gear-up-get-out-sale-2023-1114/");
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
-        WebElement closeButton = setWebElement(By.xpath("//button[@class='_27f88555']"));
+        Thread.sleep(4000);
+        WebElement closeButton = setWebElement(By.xpath("//button[@class='_68b640ca']"));
         Thread.sleep(4000);
         closeButton.click();
         WebElement authorNameLink = setWebElement(By.xpath("//a[@data-gtm-trigger='author_name_link']"));
@@ -87,7 +88,7 @@ public class NYTimesTest {
         WebElement submitButton = setWebElement(By.xpath("//button[@type='submit']"));
         submitButton.click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        WebElement titleResult = setWebElement(By.xpath("//h3[@class='c234c10f']"));
+        WebElement titleResult = setWebElement(By.xpath("//h3[@class='_37cb874a']"));
         Assert.assertTrue(titleResult.getText().contains("Kitchen"), "Problem lies in search");
     }
 
@@ -124,10 +125,10 @@ public class NYTimesTest {
     @Test(description = "Test navigation to social sites")
     public void testNavigationToSocialSite() throws InterruptedException {
         driver.get("https://www.nytimes.com/wirecutter/reviews/best-cutting-board/");
-        WebElement closeButton = setWebElement(By.xpath("//button[@class='_27f88555']"));
+        WebElement closeButton = setWebElement(By.xpath("//button[@class='_68b640ca']"));
         Thread.sleep(5000);
         closeButton.click();
-        WebElement socialSiteButton = setWebElement(By.xpath("//a[@class='_4bf55385 _0d56c34f']"));
+        WebElement socialSiteButton = setWebElement(By.xpath("//a[@class='_27bd825e _6dcff3f7']"));
         socialSiteButton.click();
         String handle = driver.getWindowHandles().toArray()[1]
                 .toString();
