@@ -67,14 +67,14 @@ public class NYTimesTest {
     @Test(description = "Test find article author page")
     public void navigateToTheAuthorPageTest() throws InterruptedException {
         driver.get("https://www.nytimes.com/wirecutter/money/rei-gear-up-get-out-sale-2023-1114/");
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
-        Thread.sleep(4000);
+        new WebDriverWait(driver, Duration.ofSeconds(4))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='_68b640ca'] ")));
         WebElement closeButton = setWebElement(By.xpath("//button[@class='_68b640ca']"));
-        Thread.sleep(4000);
         closeButton.click();
         WebElement authorNameLink = setWebElement(By.xpath("//a[@data-gtm-trigger='author_name_link']"));
         authorNameLink.click();
-        Thread.sleep(4000);
+        new WebDriverWait(driver, Duration.ofSeconds(4))
+                .until(ExpectedConditions.urlToBe("https://www.nytimes.com/wirecutter/authors/nathan-burrow/"));
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.nytimes.com/wirecutter/authors/nathan-burrow/", "Author link doesn't work");
     }
 
@@ -82,12 +82,14 @@ public class NYTimesTest {
     public void testSearchField() throws InterruptedException {
         driver.get("https://www.nytimes.com/wirecutter/");
         driver.manage().window().fullscreen();
-        Thread.sleep(3000);
+        new WebDriverWait(driver, Duration.ofSeconds(4))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@aria-label='Search Wirecutter']")));
         WebElement searchBar = setWebElement(By.xpath("//input[@aria-label='Search Wirecutter']"));
         searchBar.sendKeys("Kitchen");
         WebElement submitButton = setWebElement(By.xpath("//button[@type='submit']"));
         submitButton.click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        new WebDriverWait(driver, Duration.ofSeconds(4))
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[@class='_37cb874a']")));
         WebElement titleResult = setWebElement(By.xpath("//h3[@class='_37cb874a']"));
         Assert.assertTrue(titleResult.getText().contains("Kitchen"), "Problem lies in search");
     }
