@@ -2,6 +2,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -25,6 +27,15 @@ public class NYTimesTest {
                 .chooseDataFilter()
                 .chooseFilterDataOption();
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.nytimes.com/search?dropmab=false&query=Climate&sort=oldest", "Problems with filters");
+    }
+
+    @Test(description = "Test searchbar")
+    public void testSearchField() throws InterruptedException {
+        MainPage page = new MainPage(driver);
+        page.openPage()
+                .enterDataInSearchbar()
+                .submitResult();
+        Assert.assertTrue(driver.getCurrentUrl().contains(MainPage.inputData), "Problem lies in search");
     }
 
     @AfterMethod(alwaysRun = true)
