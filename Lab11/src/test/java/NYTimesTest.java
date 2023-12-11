@@ -20,7 +20,6 @@ public class NYTimesTest extends BaseTest{
         WirecutterMoney wirecutterMoney = new WirecutterMoney();
         wirecutterMoney.openPage()
                 .clickCloseAddButton()
-                .clickCloseAddButton2()
                 .clickSavePageButton();
         Assert.assertTrue( wirecutterMoney.isElementExist());
     }

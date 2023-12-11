@@ -10,7 +10,7 @@ import webdriver.Browser;
 
 public class WirecutterReviewsPage {
 
-    private static final String pageURL = "https://www.nytimes.com/wirecutter/reviews/the-best-refrigerator/";
+    private static final String pageURL = "testdata.wirecutter.reviews.page.url";
 
     @FindBy(xpath = "//button[@class='_43a6154d']")
     private WebElement closeAddButton;

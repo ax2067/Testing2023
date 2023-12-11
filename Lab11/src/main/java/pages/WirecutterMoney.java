@@ -12,7 +12,7 @@ import webdriver.Browser;
 import static utils.Waiters.getScriptToScrollPage;
 
 public class WirecutterMoney {
-    private static final String pageURL = "https://www.nytimes.com/wirecutter/money/rei-gear-up-get-out-sale-2023-1114/";
+    private static final String pageURL = "testdata.wirecutter.money.page.url";
 
     public WirecutterMoney() {
         PageFactory.initElements(Browser.getDriver(), this);
@@ -26,7 +26,7 @@ public class WirecutterMoney {
     @FindBy(xpath = "//button[@class='_43a6154d']")
     private WebElement closeAddButton;
 
-    @FindBy(xpath = "//button[@class='_60a706ef b6034031']")
+    @FindBy(xpath = "//aside[@class='_575dd389 _50d75475']")
     private WebElement closeAddButton2;
     @FindBy(xpath = "//button[@data-save-content-name='save_article']")
     private WebElement savePageButton;
@@ -88,10 +88,7 @@ public class WirecutterMoney {
 
 
     public boolean isElementExist(){
-        new WebDriverWait(Browser.getDriver(), 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='_93f997de']")));
-
-        return saveBlock.isDisplayed();
+        return closeAddButton2.isDisplayed();
     }
 
     public boolean isAuthorPage(){

@@ -8,7 +8,7 @@ import webdriver.Browser;
 
 public class AuthorPage {
 
-    private static final String pageURL = "https://www.nytimes.com/by/claire-moses";
+    private static final String pageURL = "testdata.author.page.url";
     @FindBy(xpath = "//a[@data-id='search']")
     private WebElement searchPanel;
 

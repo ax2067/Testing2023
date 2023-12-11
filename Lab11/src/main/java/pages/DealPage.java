@@ -11,7 +11,7 @@ import webdriver.Browser;
 
 public class DealPage {
 
-    private static final String pageURL = "https://www.nytimes.com/wirecutter/deals/";
+    private static final String pageURL = "testdata.deal.page.url";
 
     public DealPage() {
         PageFactory.initElements(Browser.getDriver(), this);

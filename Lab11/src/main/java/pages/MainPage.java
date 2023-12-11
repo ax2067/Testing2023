@@ -12,7 +12,7 @@ import webdriver.Browser;
 
 
 public class MainPage {
-    private static final String pageURL = "https://www.nytimes.com/wirecutter/";
+    private static final String pageURL = "testdata.main.page.url";
     public static final String inputData = "Kitchen";
     @FindBy(xpath = "//input[@aria-label='Search Wirecutter']")
     private WebElement searchBar;
