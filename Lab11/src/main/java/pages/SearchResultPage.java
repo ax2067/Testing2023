@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import webdriver.Browser;
 
 public class SearchResultPage{
-    private static final String pageURL = "testdata.search.page";
+    private static final String pageURL = "https://www.nytimes.com/search?query=Climate";
 
     public SearchResultPage() {
         PageFactory.initElements(Browser.getDriver(), this);

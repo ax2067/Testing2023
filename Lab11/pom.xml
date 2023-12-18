@@ -12,6 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <environment>elements</environment>
   </properties>
 
   <dependencies>
@@ -48,7 +49,7 @@
       <version>2.20.0</version>
     </dependency>
   </dependencies>
-  <build>
+<build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -56,6 +57,17 @@
         <configuration>
           <source>16</source>
           <target>16</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M1</version> <!-- Используйте актуальную версию плагина -->
+        <configuration>
+          <!-- Используйте свойства в настройках тестового запуска -->
+          <systemPropertyVariables>
+            <environment>${environment}</environment>
+          </systemPropertyVariables>
         </configuration>
       </plugin>
     </plugins>

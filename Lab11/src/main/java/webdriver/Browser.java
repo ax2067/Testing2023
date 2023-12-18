@@ -17,7 +17,6 @@ public class Browser {
 
     public static void initDriver() {
         driver = BrowserFactory.createDriver(BrowserType.CHROME);
-        driver.manage().window().maximize();
     }
 
     public static WebDriver getDriver() {

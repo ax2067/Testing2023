@@ -1,4 +1,5 @@
 import junit.framework.Assert;
+import listeners.RetryAnalyzer;
 import org.testng.annotations.Test;
 import pages.*;
 import webdriver.Browser;
@@ -6,7 +7,7 @@ import webdriver.Browser;
 public class NYTimesTest extends BaseTest{
 
     // 1
-    @Test(description = "Test changing language operation")
+    @Test(description = "Test changing language operation", retryAnalyzer = RetryAnalyzer.class)
     public void testChangeLanguage() throws InterruptedException {
         NYTimeMainPage mainPage = new NYTimeMainPage();
         mainPage.openPage().clickChangeLanguageButton();
@@ -15,7 +16,7 @@ public class NYTimesTest extends BaseTest{
 
 
     // 2
-    @Test(description = "Test how user can save page")
+    @Test(description = "Test how user can save page", retryAnalyzer = RetryAnalyzer.class)
     public void testSavePage() {
         WirecutterMoney wirecutterMoney = new WirecutterMoney();
         wirecutterMoney.openPage()
@@ -25,7 +26,7 @@ public class NYTimesTest extends BaseTest{
     }
 
     // 3
-    @Test(description = "Test filters")
+    @Test(description = "Test filters", retryAnalyzer = RetryAnalyzer.class)
     public void testSearchFilters() {
         SearchResultPage page = new SearchResultPage();
         page.openPage()
@@ -35,7 +36,7 @@ public class NYTimesTest extends BaseTest{
     }
 
     // 4
-    @Test(description = "Test searchbar")
+    @Test(description = "Test searchbar", retryAnalyzer = RetryAnalyzer.class)
     public void testSearchField() throws InterruptedException {
         MainPage page = new MainPage();
         page.openPage()
@@ -46,7 +47,7 @@ public class NYTimesTest extends BaseTest{
     }
 
     // 5
-    @Test(description = "Test find article from author page")
+    @Test(description = "Test find article from author page", retryAnalyzer = RetryAnalyzer.class)
     public void findArticleTest() {
         AuthorPage page = new AuthorPage();
         page.openPage()
@@ -56,7 +57,7 @@ public class NYTimesTest extends BaseTest{
     }
 
     // 6
-    @Test(description = "Test find article author page")
+    @Test(description = "Test find article author page", retryAnalyzer = RetryAnalyzer.class)
     public void navigateToTheAuthorPageTest() throws InterruptedException {
         WirecutterMoney page = new WirecutterMoney();
         page.openPage()
@@ -66,7 +67,7 @@ public class NYTimesTest extends BaseTest{
     }
 
     // 7
-    @Test(description = "Test deals page")
+    @Test(description = "Test deals page", retryAnalyzer = RetryAnalyzer.class)
     public void testNavigationToDealPage() throws InterruptedException {
         DealPage page = new DealPage();
         page.openPage()
@@ -75,7 +76,7 @@ public class NYTimesTest extends BaseTest{
     }
 
     // 8
-    @Test(description = "Test navigation to social sites")
+    @Test(description = "Test navigation to social sites", retryAnalyzer = RetryAnalyzer.class)
     public void testNavigationToSocialSite() throws InterruptedException {
         WirecutterMoney wirecutterMoney = new WirecutterMoney();
         wirecutterMoney.openPage()
@@ -85,7 +86,7 @@ public class NYTimesTest extends BaseTest{
     }
 
     //9
-    @Test(description = "Test adding cookies")
+    @Test(description = "Test adding cookies", retryAnalyzer = RetryAnalyzer.class)
     public void testAddingCookies() {
         WirecutterReviewsPage page = new WirecutterReviewsPage();
         page.openPage()
@@ -94,7 +95,7 @@ public class NYTimesTest extends BaseTest{
 
     }
     //10
-    @Test(description = "Test how site delete all cookies")
+    @Test(description = "Test how site delete all cookies", retryAnalyzer = RetryAnalyzer.class)
     public void testDeleteCookiesLoggedUser() {
         NYTimeMainPage mainPage = new NYTimeMainPage();
         mainPage.openPage()

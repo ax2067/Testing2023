@@ -1,6 +1,8 @@
 package pages;
 
+import elements.Advertisement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -9,15 +11,18 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import webdriver.Browser;
 
+import java.security.Key;
+
 import static utils.Waiters.getScriptToScrollPage;
 
 public class WirecutterMoney {
-    private static final String pageURL = "testdata.wirecutter.money.page.url";
+    private static final String pageURL = "https://www.nytimes.com/wirecutter/money/rei-gear-up-get-out-sale-2023-1114/";
 
     public WirecutterMoney() {
         PageFactory.initElements(Browser.getDriver(), this);
     }
-    public WirecutterMoney openPage(){
+
+    public WirecutterMoney openPage() {
         Browser.getDriver().get(pageURL);
         Browser.getDriver().manage().window().fullscreen();
         return this;
@@ -26,7 +31,7 @@ public class WirecutterMoney {
     @FindBy(xpath = "//button[@class='_43a6154d']")
     private WebElement closeAddButton;
 
-    @FindBy(xpath = "//aside[@class='_575dd389 _50d75475']")
+    @FindBy(xpath = "//body/div/aside/article ")
     private WebElement closeAddButton2;
     @FindBy(xpath = "//button[@data-save-content-name='save_article']")
     private WebElement savePageButton;
@@ -45,7 +50,7 @@ public class WirecutterMoney {
     @FindBy(xpath = "//input[@class='share__button link_url']")
     private WebElement copyLinkButton;
 
-    public WirecutterMoney clickCopyPreLinkButton(){
+    public WirecutterMoney clickCopyPreLinkButton() {
         getScriptToScrollPage();
         new WebDriverWait(Browser.getDriver(), 10);
         getScriptToScrollPage(100);
@@ -53,56 +58,60 @@ public class WirecutterMoney {
         return this;
     }
 
-    public WirecutterMoney clickCopyLinkButton(){
+    public WirecutterMoney clickCopyLinkButton() {
         copyLinkButton.click();
         return this;
     }
 
-    public WirecutterMoney clickSocialSiteButton(){
+    public WirecutterMoney clickSocialSiteButton() {
         socialSiteButton.click();
         return this;
     }
 
-    public WirecutterMoney clickAuthorNameLink(){
+    public WirecutterMoney clickAuthorNameLink() {
         authorNameLink.click();
         return this;
     }
 
-    public WirecutterMoney clickCloseAddButton2(){
+    public WirecutterMoney clickCloseAddButton2() {
         new WebDriverWait(Browser.getDriver(), 10)
                 .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@data-testid='regi-modal']")));
         closeAddButton2.click();
         return this;
     }
-    public WirecutterMoney clickCloseAddButton(){
-        new WebDriverWait(Browser.getDriver(), 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='_43a6154d']")));
-        closeAddButton.click();
+
+    public WirecutterMoney clickCloseAddButton() {
+        Advertisement addbutton = new Advertisement();
+        if (addbutton.isAddBlockExist()) {
+            Actions actions = new Actions(Browser.getDriver());
+            actions.sendKeys(Keys.ESCAPE).perform();
+
+        }
         return this;
     }
 
-    public WirecutterMoney clickSavePageButton(){
+    public WirecutterMoney clickSavePageButton() {
         savePageButton.click();
         return this;
     }
 
 
-    public boolean isElementExist(){
+    public boolean isElementExist() {
         return closeAddButton2.isDisplayed();
     }
 
-    public boolean isAuthorPage(){
+    public boolean isAuthorPage() {
         new WebDriverWait(Browser.getDriver(), 30).until(ExpectedConditions.urlToBe("https://www.nytimes.com/wirecutter/authors/nathan-burrow/"));
-        return (Browser.getDriver().getCurrentUrl().equals("https://www.nytimes.com/wirecutter/authors/nathan-burrow/")) ;
+        return (Browser.getDriver().getCurrentUrl().equals("https://www.nytimes.com/wirecutter/authors/nathan-burrow/"));
     }
 
-    public boolean isSocialSitePage(){
+    public boolean isSocialSitePage() {
 
         String handle = Browser.getDriver().getWindowHandles().toArray()[1]
                 .toString();
         Browser.getDriver().switchTo().window(handle);
         new WebDriverWait(Browser.getDriver(), 10);
-        return (Browser.getDriver().getCurrentUrl().contains("twitter")) ;
+        return (Browser.getDriver().getCurrentUrl().contains("twitter"));
     }
 
 }

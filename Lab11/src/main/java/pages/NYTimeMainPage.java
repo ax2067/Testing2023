@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import webdriver.Browser;
 
 public class NYTimeMainPage {
-    private static final String pageURL = "testdata.nyt.main.page.url";
+    private static final String pageURL = "https://www.nytimes.com";
 
     public NYTimeMainPage() {
         PageFactory.initElements(Browser.getDriver(), this);

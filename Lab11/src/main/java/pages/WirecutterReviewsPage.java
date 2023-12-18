@@ -1,7 +1,10 @@
 package pages;
 
+import elements.Advertisement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,9 +13,9 @@ import webdriver.Browser;
 
 public class WirecutterReviewsPage {
 
-    private static final String pageURL = "testdata.wirecutter.reviews.page.url";
+    private static final String pageURL = "https://www.nytimes.com/wirecutter/reviews/the-best-refrigerator/";
 
-    @FindBy(xpath = "//button[@class='_43a6154d']")
+    @FindBy(xpath = "//div[@class='b51cee81']/h3/following-sibling::div/following-sibling::button")
     private WebElement closeAddButton;
 
     public WirecutterReviewsPage() {
@@ -26,9 +29,13 @@ public class WirecutterReviewsPage {
     }
 
     public WirecutterReviewsPage clickCloseAddButton(){
-        new WebDriverWait(Browser.getDriver(), 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='_43a6154d']")));
-        closeAddButton.click();
+        Advertisement addbutton = new Advertisement();
+        if(addbutton.isAddBlockExist()){
+//        new WebDriverWait(Browser.getDriver(), 10)
+//                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='b51cee81']/h3/following-sibling::div/following-sibling::button")));
+            Actions actions = new Actions(Browser.getDriver());
+            actions.sendKeys(Keys.ESCAPE).perform();
+        }
         return this;
     }
     public boolean isCookiesEmpty(){
