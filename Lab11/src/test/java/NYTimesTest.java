@@ -20,7 +20,7 @@ public class NYTimesTest extends BaseTest{
     public void testSavePage() {
         WirecutterMoney wirecutterMoney = new WirecutterMoney();
         wirecutterMoney.openPage()
-                .clickCloseAddButton()
+//                .clickCloseAddButton()
                 .clickSavePageButton();
         Assert.assertTrue( wirecutterMoney.isElementExist());
     }
@@ -40,7 +40,7 @@ public class NYTimesTest extends BaseTest{
     public void testSearchField() throws InterruptedException {
         MainPage page = new MainPage();
         page.openPage()
-                .clickCloseAddButton()
+//                .clickCloseAddButton()
                 .enterDataInSearchbar()
                 .submitResult();
         org.testng.Assert.assertTrue(Browser.getDriver().getCurrentUrl().contains(MainPage.inputData), "Problem lies in search");
@@ -61,7 +61,7 @@ public class NYTimesTest extends BaseTest{
     public void navigateToTheAuthorPageTest() throws InterruptedException {
         WirecutterMoney page = new WirecutterMoney();
         page.openPage()
-                .clickCloseAddButton()
+                //.clickCloseAddButton()
                 .clickAuthorNameLink();
         Assert.assertTrue(page.isAuthorPage());
     }
@@ -80,7 +80,7 @@ public class NYTimesTest extends BaseTest{
     public void testNavigationToSocialSite() throws InterruptedException {
         WirecutterMoney wirecutterMoney = new WirecutterMoney();
         wirecutterMoney.openPage()
-                .clickCloseAddButton()
+                //.clickCloseAddButton()
                 .clickSocialSiteButton();
         Assert.assertTrue(wirecutterMoney.isSocialSitePage());
     }
@@ -89,8 +89,8 @@ public class NYTimesTest extends BaseTest{
     @Test(description = "Test adding cookies", retryAnalyzer = RetryAnalyzer.class)
     public void testAddingCookies() {
         WirecutterReviewsPage page = new WirecutterReviewsPage();
-        page.openPage()
-                .clickCloseAddButton();
+        page.openPage();
+               // .clickCloseAddButton();
         Assert.assertFalse(page.isCookiesEmpty());
 
     }
